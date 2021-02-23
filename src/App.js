@@ -16,7 +16,7 @@ function App() {
       <p>by { post.author }</p>
       <p>{post.body}</p>
       <h3>Comments</h3>
-      <p>{post.comments[0]}</p>
+      {post.comments.map((comment) => <p>{comment}</p>)}
     </div>
   );
 }
