@@ -1,9 +1,8 @@
-const Comment = (props) => {
+const Comment = (props)=> { 
     return(
         <>
-            <p>{props.text}</p>
+          <p>{props.text}</p>
         </>
     )
-}
-
+  } 
 export default Comment;

@@ -1,32 +1,49 @@
 import './App.css';
-import Comment from "./Comment"
+import { Component } from "react";
+import Comment from './Comment';
 
-function App() {
-  // name and store variables before return statement
-  const post = {
-    title: "Dionaurs are awesome",
+class App extends Component {
+  state = {
+    title: "Dinosaurs are awesome",
     author: "Stealthy Stegosaurus",
-    body: "Check out this body property",
-    comments: ["First!", "Great Post", "Hire this author now!"]
+    body: "Checkout out this body property",
+    comments: ['First!', 'Great post', 'Hire this author now!']
   }
-  // second way
-  // map returns an array
-  const comments = post.comments.map((comment, index) => (<Comment text={comment} key={index}/>))
-  // comments = [ <Comment test={post.comments[0]} />, <Comment test={post.comments[1]} />, <Comment test={post.comments[2]} />]
 
-  return (
-    <div className="App">
-      <h1>Dinosaurs are awesome</h1>
-      {/* can use variables with curly brackets */}
-      <p>by { post.author }</p>
-      <p>{post.body}</p>
-      <h3>Comments</h3>
-      {post.comments.map((comment) => <p>{comment}</p>)}
-      {/* Second Way */}
-      { comments }
-    </div>
-  );
+  // method that will update "body" state
+  changeBody = () => {
+    const userInput = prompt("Give it a new body")
+    // update body state
+    this.setState({
+      body: userInput
+    })
+  }
+  
+  addComment = () => {
+    const userInput = prompt("Give it a new body")
+    // update body state
+    this.setState({
+      comments: this.state.comments.concat(userInput)
+    })
+  }
+
+  render() {
+    // map returns an array 
+    const comments = this.state.comments.map((comment, index)=> (<Comment text={comment} key={index}/>))
+    // comments = [ <Comment text={post.comments[0]} />, <Comment text={post.comments[1]} />, <Comment text={post.comments[1]} />]
+  
+    return (
+      <div className="App">
+        <h1>{this.state.title}</h1>
+        <p>by {this.state.author}</p>
+        <p>{this.state.body}</p>
+        <h3>Comments:</h3>
+        { comments }
+        <button onClick={this.changeBody}>Change Body</button>
+        <button onClick={this.addComment}>Add To Comment</button>
+      </div>
+    );
+  }
 }
-
 
 export default App;
